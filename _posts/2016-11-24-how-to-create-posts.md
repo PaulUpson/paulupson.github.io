@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: product
 title: 'How to create a new post'
 featured_image: ''
 comments: false

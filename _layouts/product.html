@@ -1,0 +1,25 @@
+---
+layout: default
+---
+<div class="container" id="product" style="padding-top: 80px;">
+  <div class="row">
+    <div class="col-md-7">
+      <img src="/img/products/{{page.image | escape}}" alt=""/>
+    </div>
+    <div class="col-md-5">
+      <h1>{{page.title}}</h1>
+
+      <p><a href="/vendors/{{page.vendor_link}}">{{page.vendor | escape }}</a></p>
+
+      <p class="lead"><i>{{page.summary}}</i></p>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" style="padding-bottom:120px;padding-top:60px;">
+      {{content}}
+
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu sapien ac nisi sodales luctus. Vivamus eleifend augue est, scelerisque egestas velit facilisis in. Praesent pretium dolor at malesuada pellentesque. Curabitur iaculis feugiat porttitor. Phasellus ullamcorper augue nec cursus venenatis. Mauris ut felis bibendum, ullamcorper eros et, efficitur nisi. Proin aliquet erat cursus sem efficitur aliquam. Cras ornare, mi vitae vehicula vulputate, nisi dolor suscipit sem, sed commodo purus quam rutrum ipsum. Proin tempus lacus nunc, id vehicula dolor pulvinar et. Maecenas sodales ex cursus, laoreet leo at, euismod elit. Donec in nibh sed quam egestas lobortis. Maecenas luctus sem sit amet mi sodales accumsan. Maecenas ornare sit amet est ac mollis. Pellentesque mattis risus libero, vitae maximus ligula porta sed. Suspendisse aliquam fermentum sapien, ut aliquet quam fermentum eu. Nulla commodo sapien facilisis, sagittis nisi nec, convallis urna.
+    </div>
+  </div>
+</div>
