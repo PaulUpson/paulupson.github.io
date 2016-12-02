@@ -8,24 +8,12 @@ layout: page
 <div class="onl_login">
     <h3 class="onl_authTitle" data-toggle="tooltip" data-placement="bottom">Login or <a href="/account/signup">Sign up</a></h3>
     <div class="row onl_row-sm-offset-3 onl_socialButtons">
-          <div class="col-xs-2 col-sm-2">
+          <div class="col-xs-12 col-sm-6">
             <a href="#" class="btn btn-lg btn-block onl_btn-github" id="github" data-toggle="tooltip" data-placement="top" title="GitHub">
               <i class="fa fa-github"></i>
-              <span class="hidden-xs">Github</span>
+              <span>Github</span>
             </a>
-          </div>  
-		  <div class="col-xs-2 col-sm-2">
-            <a href="#" class="btn btn-lg btn-block onl_btn-twitter" data-toggle="tooltip" data-placement="top" title="Twitter">
-              <i class="fa fa-twitter"></i>
-              <span class="hidden-xs">Twitter</span>
-            </a>
-          </div>  
-          <div class="col-xs-2 col-sm-2">
-            <a href="#" class="btn btn-lg btn-block onl_btn-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus">
-              <i class="fa fa-google-plus"></i>
-              <span class="hidden-xs">Google+</span>
-            </a>
-          </div>          
+          </div>
     </div>
    
 
@@ -63,24 +51,29 @@ $(function(){
 
 	$("#login").on("click", function(){
 		Vidpub.login({
-			email: $("email").val(),
-			password: $("password").val()
-		}, function (err){
-			if (err){
-				// wrong password maybe?
-				$("#error").text(err.message);				
+			email: $("#email").val(),
+			password: $("#password").val()
+		}, function(data, err){
+			if(err){
+				$("#error").text(err);
+			} else {
+				location.href = "/";
 			}
-		});
+		})
 	});
 
 	$("#github").on("click", function(ev){
 		ev.preventDefault();
-
-		Vidpub.github(function (err){
-			if (err){
-				$("#error").text(err.message);
-			}
-		});
+		Vidpub.loginGithub(function(userData){
+            location.href = "/";
+        }, function(err){
+            if (err){
+                // Handle errors here.
+                var errorCode = err.code;
+                var errorMessage = err.message;
+                $("#error").text(err.message);
+            }
+        });		
 	});
 });
 </script>

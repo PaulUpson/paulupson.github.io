@@ -7,24 +7,12 @@ layout: page
     <div class="onl_login">
         <h3 class="onl_authTitle" data-toggle="tooltip" data-placement="bottom"><a href="/account/login">Login</a> or Sign up</h3>
     <div class="row onl_row-sm-offset-3 onl_socialButtons">
-          <div class="col-xs-2 col-sm-2">
-            <a href="#" class="btn btn-lg btn-block onl_btn-github" data-toggle="tooltip" data-placement="top" title="GitHub">
+          <div class="col-xs-12 col-sm-6">
+            <a href="#" class="btn btn-lg btn-block onl_btn-github" id="github"  data-toggle="tooltip" data-placement="top" title="GitHub">
               <i class="fa fa-github"></i>
-              <span class="hidden-xs">Github</span>
+              <span>Github</span>
             </a>
-          </div>  
-		  <div class="col-xs-2 col-sm-2">
-            <a href="#" class="btn btn-lg btn-block onl_btn-twitter" data-toggle="tooltip" data-placement="top" title="Twitter">
-              <i class="fa fa-twitter"></i>
-              <span class="hidden-xs">Twitter</span>
-            </a>
-          </div>  
-          <div class="col-xs-2 col-sm-2">
-            <a href="#" class="btn btn-lg btn-block onl_btn-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus">
-              <i class="fa fa-google-plus"></i>
-              <span class="hidden-xs">Google+</span>
-            </a>
-          </div>        
+          </div> 
     </div>
 
     <div class="row onl_row-sm-offset-3 onl_loginOr">
@@ -69,20 +57,35 @@ layout: page
 </div>
 
 <script>
-    $(function(){
-        
-        $("#signup").on("click", function(e){
-            Vidpub.signUp({
-                email: $("#email").val(),
-                password: $("#password").val()
-            }, function(err, res){
-                if (err){
-                    $("#error").text(err);
-                } else {
-                    location.href = "/";
-                }
-            })
-            e.preventDefault();
-        })
-    })
+$(function(){
+    $("#signup").on("click", function(e){
+        Vidpub.createUser({
+            email: $("#email").val(),
+            password: $("#password").val()
+        }, function(userData){
+            location.href = "/";
+        }, function(err){
+            if (err){
+                // Handle errors here
+                var errorCode = err.code;
+                var errorMessage = err.message;
+                $("#error").text(err.message);
+            }
+        });
+    });
+
+    $("#github").on("click", function(ev){
+		ev.preventDefault();
+        Vidpub.loginGithub(function(userData){
+            location.href = "/";
+        }, function(err){
+            if (err){
+                // Handle errors here.
+                var errorCode = err.code;
+                var errorMessage = err.message;
+                $("#error").text(err.message);
+            }
+        });
+    });
+});
 </script>
